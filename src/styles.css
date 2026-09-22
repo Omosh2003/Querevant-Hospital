@@ -155,6 +155,16 @@
     font-weight: 500;
     letter-spacing: -0.02em;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  #main-content:focus {
+    outline: none;
+  }
 }
 
 @utility surface-deep {
