@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Activity,
   HeartPulse,
   HardHat,
   Mail,
   MapPin,
+  Menu,
   MessageCircle,
   Instagram,
   Music2,
@@ -14,6 +16,14 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
