@@ -135,7 +135,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-primary-foreground focus:shadow-lift"
@@ -375,27 +375,33 @@ function Index() {
               </div>
               <ul className="space-y-4 text-sm">
                 <li className="flex items-center gap-3">
-                  <MessageCircle className="h-4 w-4 shrink-0 opacity-70" />
-                  <a className="hover:underline" href={WHATSAPP} target="_blank" rel="noreferrer">
+                  <MessageCircle className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
+                  <a
+                    className="hover:underline"
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Chat on WhatsApp: 0719 271 664 (opens in a new tab)"
+                  >
                     WhatsApp: 0719271664
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 shrink-0 opacity-70" />
+                  <Mail className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <a className="hover:underline" href="mailto:qurevanthealthgroup@gmail.com">
                     qurevanthealthgroup@gmail.com
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <MapPin className="h-4 w-4 shrink-0 opacity-70" />
+                  <MapPin className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <span>Nairobi · Mombasa · Lamu</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Instagram className="h-4 w-4 shrink-0 opacity-70" />
+                  <Instagram className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <span>Instagram: Qurevant Health Group</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Music2 className="h-4 w-4 shrink-0 opacity-70" />
+                  <Music2 className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <span>TikTok: Qurevant Health Group</span>
                 </li>
               </ul>
