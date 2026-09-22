@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Activity,
   HeartPulse,
   HardHat,
   Mail,
   MapPin,
+  Menu,
   MessageCircle,
   Instagram,
   Music2,
@@ -14,6 +16,14 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
@@ -114,40 +124,99 @@ const values = [
   },
 ];
 
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#why", label: "Why us" },
+  { href: "#contact", label: "Contact" },
+];
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-primary-foreground focus:shadow-lift"
+      >
+        Skip to main content
+      </a>
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+          <a href="#top" className="flex items-center gap-2" aria-label="Qurevant Health Group — back to top">
+            <span
+              aria-hidden="true"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground"
+            >
               <HeartPulse className="h-4 w-4" />
             </span>
             <span className="font-display text-lg tracking-tight">Qurevant</span>
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-foreground" href="#about">
-              About
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#services">
-              Services
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#why">
-              Why us
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#contact">
-              Contact
-            </a>
+          <nav aria-label="Primary" className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                className="rounded-sm transition-colors hover:text-foreground"
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
-          <Button asChild size="sm" className="rounded-full">
-            <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              Talk to us
-            </a>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="rounded-full">
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label="Talk to us on WhatsApp (opens in a new tab)">
+                Talk to us
+              </a>
+            </Button>
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="min-h-11 min-w-11 md:hidden"
+                  aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+                  aria-expanded={menuOpen}
+                >
+                  <Menu className="h-5 w-5" aria-hidden="true" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-72" aria-label="Site navigation">
+                <SheetHeader>
+                  <SheetTitle className="font-display text-left">Qurevant Health Group</SheetTitle>
+                  <SheetDescription className="sr-only">
+                    Main navigation for the Qurevant Health Group website
+                  </SheetDescription>
+                </SheetHeader>
+                <nav aria-label="Mobile" className="mt-6 flex flex-col gap-1">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="rounded-lg px-3 py-3 text-base text-foreground transition-colors hover:bg-secondary"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Talk to us on WhatsApp (opens in a new tab)"
+                    className="mt-3 rounded-full bg-primary px-5 py-3 text-center text-sm font-medium text-primary-foreground"
+                  >
+                    Talk to us on WhatsApp
+                  </a>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </header>
 
-      <main id="top">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
         <section className="surface-mist">
           <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:py-24 lg:grid-cols-[1.05fr_1fr] lg:items-center">
@@ -306,27 +375,33 @@ function Index() {
               </div>
               <ul className="space-y-4 text-sm">
                 <li className="flex items-center gap-3">
-                  <MessageCircle className="h-4 w-4 shrink-0 opacity-70" />
-                  <a className="hover:underline" href={WHATSAPP} target="_blank" rel="noreferrer">
+                  <MessageCircle className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
+                  <a
+                    className="hover:underline"
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Chat on WhatsApp: 0719 271 664 (opens in a new tab)"
+                  >
                     WhatsApp: 0719271664
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 shrink-0 opacity-70" />
+                  <Mail className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <a className="hover:underline" href="mailto:qurevanthealthgroup@gmail.com">
                     qurevanthealthgroup@gmail.com
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <MapPin className="h-4 w-4 shrink-0 opacity-70" />
+                  <MapPin className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <span>Nairobi · Mombasa · Lamu</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Instagram className="h-4 w-4 shrink-0 opacity-70" />
+                  <Instagram className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <span>Instagram: Qurevant Health Group</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Music2 className="h-4 w-4 shrink-0 opacity-70" />
+                  <Music2 className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
                   <span>TikTok: Qurevant Health Group</span>
                 </li>
               </ul>
