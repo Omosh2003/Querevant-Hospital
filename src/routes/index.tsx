@@ -146,7 +146,7 @@ function GuidanceSection() {
 
   const mutation = useMutation({
     mutationFn: async (q: string) => {
-      const result = await askQurevant({ question: q });
+      const result = await askQurevant({ data: { question: q } });
       return result.guidance;
     },
   });
