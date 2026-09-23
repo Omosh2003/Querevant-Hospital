@@ -27,6 +27,8 @@ import {
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
+import logo from "@/assets/logo.png";
+import logoWhite from "@/assets/logo-white.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -144,14 +146,14 @@ function Index() {
       </a>
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-          <a href="#top" className="flex items-center gap-2" aria-label="Qurevant Health Group — back to top">
-            <span
-              aria-hidden="true"
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground"
-            >
-              <HeartPulse className="h-4 w-4" />
-            </span>
-            <span className="font-display text-lg tracking-tight">Qurevant</span>
+          <a href="#top" className="flex items-center" aria-label="Qurevant Health Group — back to top">
+            <img
+              src={logo}
+              alt=""
+              width={1504}
+              height={411}
+              className="h-10 w-auto"
+            />
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             {navLinks.map((link) => (
@@ -184,7 +186,15 @@ function Index() {
               </SheetTrigger>
               <SheetContent side="right" className="w-72" aria-label="Site navigation">
                 <SheetHeader>
-                  <SheetTitle className="font-display text-left">Qurevant Health Group</SheetTitle>
+                  <SheetTitle className="text-left">
+                    <img
+                      src={logo}
+                      alt="Qurevant Health Group"
+                      width={1504}
+                      height={411}
+                      className="h-12 w-auto"
+                    />
+                  </SheetTitle>
                   <SheetDescription className="sr-only">
                     Main navigation for the Qurevant Health Group website
                   </SheetDescription>
@@ -357,7 +367,14 @@ function Index() {
           <div className="surface-deep rounded-3xl px-6 py-14 sm:px-12">
             <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <h2 className="text-3xl sm:text-4xl">Let's build a healthier, safer future</h2>
+                <img
+                  src={logoWhite}
+                  alt="Qurevant Health Group — Integrated Health Solutions For Sustainable Wellbeing"
+                  width={1504}
+                  height={411}
+                  className="h-14 w-auto"
+                />
+                <h2 className="mt-6 text-3xl sm:text-4xl">Let's build a healthier, safer future</h2>
                 <p className="mt-4 max-w-md leading-relaxed opacity-80">
                   Whether you are an individual, a family or an organisation, our team is ready to
                   design the right programme with you.
@@ -411,12 +428,22 @@ function Index() {
       </main>
 
       <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            <span className="font-display text-foreground">Qurevant Health Group</span> — Integrated
-            Solutions for Sustainable Wellbeing.
-          </p>
-          <p>Preventative Care · Rehabilitative Care · Occupational Safety & Health</p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center">
+            <img
+              src={logo}
+              alt="Qurevant Health Group"
+              width={1504}
+              height={411}
+              className="h-11 w-auto"
+            />
+          </div>
+          <div className="sm:text-right">
+            <p className="font-medium text-foreground">
+              Integrated Solutions for Sustainable Wellbeing.
+            </p>
+            <p className="mt-1">Preventative Care · Rehabilitative Care · Occupational Safety & Health</p>
+          </div>
         </div>
       </footer>
     </div>
