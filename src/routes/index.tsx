@@ -488,6 +488,8 @@ function Index() {
           </div>
         </section>
 
+        <GuidanceSection />
+
         {/* Contact */}
         <section id="contact" className="mx-auto max-w-6xl px-5 pb-20">
           <div className="surface-deep rounded-3xl px-6 py-14 sm:px-12">
