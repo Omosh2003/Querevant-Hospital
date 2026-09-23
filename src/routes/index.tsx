@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import {
   Activity,
   HeartPulse,
   HardHat,
+  Info,
   Mail,
   MapPin,
   Menu,
@@ -11,6 +14,7 @@ import {
   Instagram,
   Music2,
   ShieldCheck,
+  Sparkles,
   Stethoscope,
   Users,
 } from "lucide-react";
@@ -24,6 +28,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { getHealthGuidance } from "@/lib/guidance.functions";
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
@@ -129,9 +134,130 @@ const values = [
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
+  { href: "#guidance", label: "Health guidance" },
   { href: "#why", label: "Why us" },
   { href: "#contact", label: "Contact" },
 ];
+
+function GuidanceSection() {
+  const askQurevant = useServerFn(getHealthGuidance);
+  const [question, setQuestion] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const mutation = useMutation({
+    mutationFn: async (q: string) => {
+      const result = await askQurevant({ data: { question: q } });
+      return result.guidance;
+    },
+  });
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = question.trim();
+    if (trimmed.length < 5) {
+      setError("Please write at least a few words so we can help.");
+      return;
+    }
+    if (trimmed.length > 1500) {
+      setError("Please keep your question under 1500 characters.");
+      return;
+    }
+    setError(null);
+    mutation.mutate(trimmed);
+  };
+
+  return (
+    <section id="guidance" className="surface-mist py-20" aria-labelledby="guidance-heading">
+      <div className="mx-auto max-w-3xl px-5">
+        <div className="text-center">
+          <p className="eyebrow text-primary">Not sure where to start?</p>
+          <h2 id="guidance-heading" className="mt-4 text-3xl sm:text-4xl">
+            Ask us a health question
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted-foreground">
+            Tell us what's on your mind and we'll point you towards the Qurevant services that fit
+            your situation.
+          </p>
+        </div>
+
+        <form onSubmit={submit} className="mt-10 rounded-3xl bg-card p-6 shadow-soft sm:p-8" noValidate>
+          <label htmlFor="health-question" className="block text-sm font-medium">
+            Your question
+          </label>
+          <textarea
+            id="health-question"
+            name="question"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            rows={4}
+            maxLength={1500}
+            placeholder="For example: my father is recovering from a stroke — what support do you offer at home?"
+            aria-describedby="guidance-disclaimer guidance-error"
+            className="mt-2 w-full rounded-2xl border border-input bg-background px-4 py-3 text-base leading-relaxed placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          />
+          {error ? (
+            <p id="guidance-error" role="alert" className="mt-2 text-sm text-destructive">
+              {error}
+            </p>
+          ) : null}
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs text-muted-foreground">{question.length}/1500 characters</p>
+            <Button type="submit" variant="hero" size="lg" disabled={mutation.isPending}>
+              {mutation.isPending ? "Thinking…" : "Get guidance"}
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+            </Button>
+          </div>
+
+          {mutation.isError ? (
+            <p role="alert" className="mt-4 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive">
+              Something went wrong on our side. Please try again, or send your question straight to
+              us on WhatsApp 0719 271 664.
+            </p>
+          ) : null}
+
+          {mutation.data ? (
+            <div
+              role="status"
+              aria-live="polite"
+              className="mt-6 rounded-2xl border border-border bg-secondary/50 p-5"
+            >
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                What we'd suggest
+              </h3>
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-foreground">
+                {mutation.data}
+              </p>
+            </div>
+          ) : null}
+        </form>
+
+        <aside
+          id="guidance-disclaimer"
+          aria-label="Privacy and medical disclaimer"
+          className="mt-6 rounded-2xl border border-border bg-sand/60 p-5 sm:p-6"
+        >
+          <div className="flex gap-3">
+            <Info className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+            <div className="space-y-2 text-sm leading-relaxed text-foreground/90">
+              <p className="font-semibold text-foreground">Privacy &amp; medical disclaimer</p>
+              <p>
+                This is general health information, not a diagnosis. Answers are produced
+                automatically and are not medical advice — they cannot replace a consultation with
+                a qualified healthcare professional. Always seek personal advice before making
+                decisions about your care.
+              </p>
+              <p>
+                Your question is sent only to generate this response. We do not save, store or
+                share it, and nothing is linked to your identity. For anything urgent, contact a
+                hospital or emergency services immediately.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -361,6 +487,8 @@ function Index() {
             ))}
           </div>
         </section>
+
+        <GuidanceSection />
 
         {/* Contact */}
         <section id="contact" className="mx-auto max-w-6xl px-5 pb-20">
