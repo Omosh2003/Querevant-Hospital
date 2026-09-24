@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
@@ -14,6 +14,7 @@ import {
   Instagram,
   Linkedin,
   Music2,
+  Send,
   ShieldCheck,
   Sparkles,
   Stethoscope,
@@ -30,6 +31,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { getHealthGuidance } from "@/lib/guidance.functions";
+import { submitContactEnquiry } from "@/lib/contact.functions";
+import { contactSchema, type ContactInput } from "@/lib/contact-schema";
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
