@@ -12,6 +12,7 @@ import {
   Menu,
   MessageCircle,
   Instagram,
+  Linkedin,
   Music2,
   ShieldCheck,
   Sparkles,
@@ -32,8 +33,9 @@ import { getHealthGuidance } from "@/lib/guidance.functions";
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
-import logo from "@/assets/logo.png";
 import logoWhite from "@/assets/logo-white.png";
+import ceoImg1 from "@/assets/ceo-rose-wambua-1.jpg.asset.json";
+import ceoImg2 from "@/assets/ceo-rose-wambua-2.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -60,7 +62,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "https://wa.me/254719271664";
+const WHATSAPP = "https://wa.me/254785334854";
+const TIKTOK_URL = "https://www.tiktok.com/@qurevant.health.g";
+const LINKEDIN_URL = "https://www.linkedin.com/in/qurevant-health-group-ab4892438";
 
 const services = [
   {
@@ -134,6 +138,7 @@ const values = [
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
+  { href: "#leadership", label: "Leadership" },
   { href: "#guidance", label: "Health guidance" },
   { href: "#why", label: "Why us" },
   { href: "#contact", label: "Contact" },
@@ -211,7 +216,7 @@ function GuidanceSection() {
           {mutation.isError ? (
             <p role="alert" className="mt-4 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive">
               Something went wrong on our side. Please try again, or send your question straight to
-              us on WhatsApp 0719 271 664.
+              us on WhatsApp 0785 334 854.
             </p>
           ) : null}
 
@@ -471,6 +476,61 @@ function Index() {
           </div>
         </section>
 
+        {/* Leadership */}
+        <section id="leadership" className="surface-mist py-20" aria-labelledby="leadership-heading">
+          <div className="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+              <img
+                src={ceoImg1.url}
+                alt="Rose Wambua, Chief Executive Officer of Qurevant Health Group"
+                loading="lazy"
+                className="aspect-[3/4] w-full rounded-2xl object-cover shadow-soft"
+              />
+              <img
+                src={ceoImg2.url}
+                alt="Rose Wambua out in the community"
+                loading="lazy"
+                className="mt-8 aspect-[3/4] w-full rounded-2xl object-cover shadow-soft"
+              />
+            </div>
+            <div>
+              <p className="eyebrow text-primary">Leadership</p>
+              <h2 id="leadership-heading" className="mt-4 text-3xl sm:text-4xl">
+                Meet our CEO
+              </h2>
+              <h3 className="mt-6 font-display text-2xl text-primary">Rose Wambua</h3>
+              <p className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">
+                Chief Executive Officer · Qurevant Health Group
+              </p>
+              <p className="mt-5 leading-relaxed text-muted-foreground">
+                Rose Wambua leads Qurevant Health Group with a simple conviction: good health
+                should be proactive, personal and within reach. Under her leadership, the
+                organisation brings preventative care, rehabilitation and workplace safety
+                together under one roof for individuals, families and organisations across
+                Nairobi, Mombasa and Lamu.
+              </p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                She is hands-on in the communities Qurevant serves — listening to patients,
+                partnering with employers, and building a team culture centred on compassion
+                and professional excellence.
+              </p>
+              <div className="mt-7">
+                <Button asChild variant="outline" size="lg">
+                  <a
+                    href={LINKEDIN_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Rose Wambua on LinkedIn (opens in a new tab)"
+                  >
+                    <Linkedin className="h-4 w-4" aria-hidden="true" />
+                    Connect with Rose on LinkedIn
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why us */}
         <section id="why" className="mx-auto max-w-6xl px-5 py-20">
           <p className="eyebrow text-primary">Why choose us</p>
@@ -510,7 +570,7 @@ function Index() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Button asChild variant="hero" size="xl">
                     <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                      WhatsApp 0719 271 664
+                      WhatsApp 0785 334 854
                     </a>
                   </Button>
                   <Button asChild variant="onDeep" size="xl">
