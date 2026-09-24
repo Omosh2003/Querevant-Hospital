@@ -587,9 +587,9 @@ function Index() {
                     href={WHATSAPP}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="Chat on WhatsApp: 0719 271 664 (opens in a new tab)"
+                    aria-label="Chat on WhatsApp: 0785 334 854 (opens in a new tab)"
                   >
-                    WhatsApp: 0719271664
+                    WhatsApp: 0785 334 854
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
@@ -608,7 +608,27 @@ function Index() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Music2 className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
-                  <span>TikTok: Qurevant Health Group</span>
+                  <a
+                    className="hover:underline"
+                    href={TIKTOK_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Qurevant Health Group on TikTok (opens in a new tab)"
+                  >
+                    TikTok: @qurevant.health.g
+                  </a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Linkedin className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
+                  <a
+                    className="hover:underline"
+                    href={LINKEDIN_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Qurevant Health Group on LinkedIn (opens in a new tab)"
+                  >
+                    LinkedIn: Qurevant Health Group
+                  </a>
                 </li>
               </ul>
             </div>
