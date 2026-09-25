@@ -31,8 +31,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { getHealthGuidance } from "@/lib/guidance.functions";
-import { submitContactEnquiry } from "@/lib/contact.functions";
-import { contactSchema, type ContactInput } from "@/lib/contact-schema";
+import { ContactForm } from "@/components/ContactForm";
 import heroImg from "@/assets/hero.jpg";
 import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
@@ -634,6 +633,9 @@ function Index() {
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="mt-12">
+              <ContactForm />
             </div>
           </div>
         </section>
