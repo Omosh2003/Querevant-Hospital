@@ -485,13 +485,13 @@ function Index() {
             <div className="grid grid-cols-2 gap-4 sm:gap-5">
               <img
                 src={ceoImg1.url}
-                alt="Rose Wambua, Chief Executive Officer of Qurevant Health Group"
+                alt="Rose Wanjiru, Chief Executive Officer of Qurevant Health Group"
                 loading="lazy"
                 className="aspect-[3/4] w-full rounded-2xl object-cover shadow-soft"
               />
               <img
                 src={ceoImg2.url}
-                alt="Rose Wambua out in the community"
+                alt="Rose Wanjiru out in the community"
                 loading="lazy"
                 className="mt-8 aspect-[3/4] w-full rounded-2xl object-cover shadow-soft"
               />
@@ -501,12 +501,12 @@ function Index() {
               <h2 id="leadership-heading" className="mt-4 text-3xl sm:text-4xl">
                 Meet our CEO
               </h2>
-              <h3 className="mt-6 font-display text-2xl text-primary">Rose Wambua</h3>
+              <h3 className="mt-6 font-display text-2xl text-primary">Rose Wanjiru</h3>
               <p className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">
                 Chief Executive Officer · Qurevant Health Group
               </p>
               <p className="mt-5 leading-relaxed text-muted-foreground">
-                Rose Wambua leads Qurevant Health Group with a simple conviction: good health
+                Rose Wanjiru leads Qurevant Health Group with a simple conviction: good health
                 should be proactive, personal and within reach. Under her leadership, the
                 organisation brings preventative care, rehabilitation and workplace safety
                 together under one roof for individuals, families and organisations across
@@ -523,7 +523,7 @@ function Index() {
                     href={LINKEDIN_URL}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="Rose Wambua on LinkedIn (opens in a new tab)"
+                    aria-label="Rose Wanjiru on LinkedIn (opens in a new tab)"
                   >
                     <Linkedin className="h-4 w-4" aria-hidden="true" />
                     Connect with Rose on LinkedIn
