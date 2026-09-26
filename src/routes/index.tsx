@@ -37,8 +37,8 @@ import preventImg from "@/assets/prevent.jpg";
 import oshImg from "@/assets/osh.jpg";
 import logo from "@/assets/logo.png";
 import logoWhite from "@/assets/logo-white.png";
-import ceoImg1 from "@/assets/ceo-rose-wambua-1.jpg.asset.json";
-import ceoImg2 from "@/assets/ceo-rose-wambua-2.jpg.asset.json";
+import ceoImg1 from "@/assets/ceo-rose-wanjiru-1.jpg.asset.json";
+import ceoImg2 from "@/assets/ceo-rose-wanjiru-2.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
